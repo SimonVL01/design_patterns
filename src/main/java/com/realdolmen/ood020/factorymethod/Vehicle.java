@@ -1,5 +1,7 @@
 package com.realdolmen.ood020.factorymethod;
 
+import java.util.ArrayList;
+
 class Vehicle {
 
 	protected int noPassengers;
@@ -26,4 +28,5 @@ class Vehicle {
 		return Ferry.VEHICLE_COST + (Ferry.PASSENGER_COST * noPassengers);
 	}
 
-}
+	}
+

@@ -37,6 +37,8 @@ public class FerryFrame extends JFrame implements ActionListener {
 
 	private Ferry theFerry;
 
+	private VehicleFactory vc = new VehicleFactoryImpl();
+
 	public FerryFrame(String title, Ferry f) {
 		super(title);
 
@@ -138,22 +140,22 @@ public class FerryFrame extends JFrame implements ActionListener {
 	}
 
 	public void actionPerformed(ActionEvent event) {
+
+
 		if (event.getSource() == newVehicle) {
 			Vehicle v = null;
-			boolean added = false;
 			int berths = 0;
-			// get details and add a vehicle
 			String reg = regNo.getText();
 			int noPass = Integer.parseInt(passChoice.getSelectedItem());
+			 v = vc.createVehicle(checkboxes[0].isSelected(), noPass, reg, berths);
+			boolean added = false;
+			berths = Integer.parseInt(berthsChoice.getSelectedItem());
+			// get details and add a vehicle
 
-			if (checkboxes[0].isSelected()) {
-				v = new Vehicle(noPass, reg);
-				added = theFerry.addVehicle(v);
-			} else {
-				berths = Integer.parseInt(berthsChoice.getSelectedItem());
-				v = new Truck(noPass, reg, berths);
-				added = theFerry.addVehicle(v);
-			}
+
+
+			added = theFerry.addVehicle(v);
+
 			if (added)
 				warning.setText("Vehicle added successfully");
 			else
@@ -172,7 +174,7 @@ public class FerryFrame extends JFrame implements ActionListener {
 			int noPass = Integer.parseInt(passChoice.getSelectedItem());
 
 			if (checkboxes[0].isSelected()) {
-				v = new Vehicle(noPass, reg);
+				v= new Vehicle(noPass, reg);
 				costLabel.setText("Cost is: €" + v.getCost());
 			} else {
 				berths = Integer.parseInt(berthsChoice.getSelectedItem());
@@ -196,6 +198,8 @@ public class FerryFrame extends JFrame implements ActionListener {
 				System.out.println(e);
 			}
 		}
+
+
 	}
 
 }

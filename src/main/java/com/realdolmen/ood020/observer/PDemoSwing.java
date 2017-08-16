@@ -12,7 +12,7 @@ import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 import javax.swing.JPanel;
 
-public class PDemoSwing extends JFrame implements ActionListener // , Observer
+public class PDemoSwing extends JFrame implements ActionListener , Observer
 {
 
 	private static final long serialVersionUID = 1L;
@@ -29,6 +29,7 @@ public class PDemoSwing extends JFrame implements ActionListener // , Observer
 		super(title);
 
 		aperson = p;
+		aperson.addObserver(this);
 
 		menubar1 = new JMenuBar();
 
@@ -76,4 +77,10 @@ public class PDemoSwing extends JFrame implements ActionListener // , Observer
 		}
 	}
 
+	@Override
+	public void update() {
+		fnl.setText("Forename: " + aperson.getForename());
+		snl.setText("Surname: " + aperson.getSurname());
+		al.setText("Age: " + aperson.getAge());
+	}
 }

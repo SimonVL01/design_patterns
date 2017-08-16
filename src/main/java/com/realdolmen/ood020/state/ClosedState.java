@@ -17,6 +17,7 @@ public class ClosedState extends State {
 
     @Override
     public State close(BankAccount account) {
+        account.setBalance(0.0);
         return this;
     }
 }

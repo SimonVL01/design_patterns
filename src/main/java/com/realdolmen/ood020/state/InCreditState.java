@@ -24,6 +24,7 @@ public class InCreditState extends State {
 
     @Override
     public State close(BankAccount account) {
-        return this;
+        account.setBalance(0.0);
+        return new ClosedState();
     }
 }
